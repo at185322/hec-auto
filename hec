@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Put your path to the hec-doc file in here:
+# ex. HEC_PATH="~/Documents/hec-doc"
+HEC_PATH=""
+
+# Auto installer is untested, but sniff test says it should work 
+init(){
+    if ps aux | grep Docker.app | grep -v grep; then 
+        echo "Docker not running..."
+    else 
+        echo "Docker is running..."
+        return
+    fi 
+    if [ -d "/Applications/Docker.app" ]; then
+        echo "Docker not found"
+        echo "You need Docker Desktop on Mac. Docker is a little messy on Mac"
+        echo "Attempting to install with brew..."
+        if which brew > /dev/null; then
+            echo "brew found, installing docker as Cask"
+            brew install --cask docker -y
+        fi
+        echo "You don't have brew, and I can't fix this. Install brew through Self Service"
+    fi
+    echo "Attempting to launch Docker..."
+    open /Applications/Docker.app
+}
+
+case $1 in
+    up )
+        echo "going up..."
+        init
+        cd $HEC_PATH
+        git pull
+        docker-compose -f $HEC_PATH/dev-env/compose.yaml build         
+        docker-compose -f $HEC_PATH/dev-env/compose.yaml up         
+        ;;
+    down )
+        echo "going down..."
+        cd ~/projects/hec-doc/dev-env/ 
+        cd $HEC_PATH
+        docker-compose -f $HEC_PATH/dev-env/compose.yaml down
+        git pull
+        ;;
+    *)
+        echo "use following commands for HEC environment setup"
+        echo "hec up"
+        echo "hec down"
+        ;;
+esac
