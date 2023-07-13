@@ -3,8 +3,8 @@
 An auto setup script for HEC, with minimal config
 
 ## Config
-
-open up `./hec`, and set the `HEC_PATH` variable to the path of where `hec-doc` is installed.
+Clone `hec-doc`.
+Open up `./hec` with your [favorite text editor](https://neovim.io), and set the `HEC_PATH` variable to the path of where `hec-doc` is cloned.
 
 ## Usage
 
