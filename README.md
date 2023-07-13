@@ -3,13 +3,16 @@
 An auto setup script for HEC, with minimal config
 
 ## Config
-Clone `hec-doc`.
-Open up `./hec` with your [favorite text editor](https://neovim.io), and set the `HEC_PATH` variable to the path of where `hec-doc` is cloned.
+1. Clone `hec-doc`
+2. Open up `./hec` with your [favorite text editor](https://neovim.io)
+3. Set the `HEC_PATH` variable to the path of `hec-doc`
 
 ## Usage
-
-`hec up` starts the docker container inside of hec-doc/dev-env
-`hec down` stop the existing docker container
+```
+hec up              - starts the docker container inside of hec-doc/dev-env. 
+hec down            - stops the existing docker container. 
+hec {anything else} - gives the above description.
+```
 
 ## Install
 
